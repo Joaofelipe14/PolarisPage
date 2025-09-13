@@ -1293,7 +1293,7 @@ section {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 60px;
         flex-direction: column;
         background-color: rgba(10, 31, 68, 0.95);
         width: 100%;
