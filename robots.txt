@@ -4,29 +4,36 @@ Allow: /
 # Sitemap
 Sitemap: https://polarissoftware.com.br/sitemap.xml
 
-# Crawl-delay
-Crawl-delay: 1
+# Allow all important content
+Allow: /assets/
+Allow: /styles.css
+Allow: /script.js
+Allow: /index.html
+Allow: /manifest.json
 
 # Disallow admin areas (if any)
 Disallow: /admin/
 Disallow: /private/
 Disallow: /temp/
+Disallow: /test/
 
-# Allow important files
-Allow: /assets/
-Allow: /styles.css
-Allow: /script.js
-Allow: /index.html
-
-# Specific bot instructions
+# Specific bot instructions for faster crawling
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
 User-agent: Slurp
 Allow: /
-Crawl-delay: 2
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Host directive (if using www)
+Host: https://polarissoftware.com.br
+
