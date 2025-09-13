@@ -1,14 +1,55 @@
-// DOM Content Loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initNavigation();
-    initScrollEffects();
-    initAnimations();
-    initParallax();
-    initFormHandling();
-    initProductInteractions();
-    initVideoHandling();
-});
+// Performance optimization - Critical path
+(function() {
+    'use strict';
+    
+    // Preload critical resources
+    const preloadCriticalResources = () => {
+        const criticalImages = [
+            'assets/images/Polaris_proposta3.png',
+            'assets/images/PolarisP.jpeg'
+        ];
+        
+        criticalImages.forEach(src => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = src;
+            document.head.appendChild(link);
+        });
+    };
+    
+    // Initialize critical functionality immediately
+    const initCritical = () => {
+        initNavigation();
+        initVideoHandling();
+        preloadCriticalResources();
+    };
+    
+    // Initialize non-critical functionality after page load
+    const initNonCritical = () => {
+        initScrollEffects();
+        initAnimations();
+        initParallax();
+        initFormHandling();
+        initProductInteractions();
+    };
+    
+    // Run critical code immediately
+    initCritical();
+    
+    // Run non-critical code after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNonCritical);
+    } else {
+        initNonCritical();
+    }
+    
+    // Run after page is fully loaded
+    window.addEventListener('load', () => {
+        // Additional optimizations after page load
+        optimizePerformance();
+    });
+})();
 
 // Navigation functionality
 function initNavigation() {
@@ -462,6 +503,32 @@ function showPurchaseModal(productName, productPrice) {
             transform: scale(0.9) translateY(20px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(30, 144, 255, 0.5) rgba(10, 31, 68, 0.3);
+            scroll-behavior: smooth;
+        }
+        
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(10, 31, 68, 0.3);
+            border-radius: 10px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.6), rgba(0, 191, 255, 0.6));
+            border-radius: 10px;
+            border: 1px solid rgba(30, 144, 255, 0.2);
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.8), rgba(0, 191, 255, 0.8));
+        }
+        
+        .modal-content::-webkit-scrollbar-corner {
+            background: rgba(10, 31, 68, 0.3);
         }
         
         .modal-content.show {
